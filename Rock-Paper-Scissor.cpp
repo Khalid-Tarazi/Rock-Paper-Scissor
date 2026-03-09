@@ -1,9 +1,22 @@
 #include <iostream>
+#include <cstdlib>    
+#include <ctime>      
+
+using namespace std;
+
+enum enGameChoice {Rock = 1, Paper = 2, Scissor = 3};
+enum enWinner {Player = 1, Computer = 2, Draw = 3 };
 
 
 
-int main()
-{
-    std::cout << "Hello World!\n";
+void startGame() {
+
+
+}
+
+int main() {
+    srand((unsigned)time(NULL)); 
+    startGame(); 
+    return 0;  
 }
 
