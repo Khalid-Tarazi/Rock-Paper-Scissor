@@ -63,12 +63,64 @@ string winnerName(enWinner winner) {
     return arrWinnerName[winner - 1];
 }
 
+enGameChoice readPlayer1Choice() {
+    short choice;
 
+    do {
+        cout << "\nYour choice: [1]Rock, [2]Paper, [3]Scissor? ";
+        cin >> choice;
+
+    } while (choice < 1 || choice > 3);
+    return (enGameChoice) choice;
+}
+
+void PrintRoundResults(stRoundInfo RoundInfo)
+{
+    cout << "\n____________ Round [" << RoundInfo.roundNumber << "] ____________\n\n";
+    cout << "Player1 Choice: " << choiceName(RoundInfo.player1Choice) << endl;
+    cout << "Computer Choice: " << choiceName(RoundInfo.computerChoice) << endl;
+    cout << "Round Winner   : [" << RoundInfo.winnerName << "]\n";
+    cout << "_________________________________________\n" << endl;
+}
+
+stGameResults playGame(short howManyRounds) {
+    stRoundInfo roundInfo;
+
+    short player1WinTimes = 0, computerWinTimes = 0, drawTimes = 0;
+
+    for (short gameRound = 1;gameRound <= howManyRounds; gameRound++) {
+        cout << "\nRound [" << gameRound << "] begins: \n";
+        roundInfo.roundNumber = gameRound;
+        roundInfo.player1Choice = readPlayer1Choice();
+        roundInfo.computerChoice = getComputerChoice();
+        roundInfo.winner = whoWonTheRound(roundInfo);
+        roundInfo.winnerName = winnerName(roundInfo.winner);
+
+        if (roundInfo.winner == enWinner::Player)
+            player1WinTimes++;
+        else if (roundInfo.winner == enWinner::Computer)
+            computerWinTimes++;
+        else drawTimes++;
+
+        PrintRoundResults(roundInfo);
+    }
+
+    return  {howManyRounds, player1WinTimes, computerWinTimes, drawTimes, whoWonTheGame(player1WinTimes, computerWinTimes), winnerName(whoWonTheGame(player1WinTimes, computerWinTimes))};
+}
 
 
 
 void startGame() {
+    char playAgain = 'Y';
 
+    do {
+        system("cls");
+        stGameResults gameResult = playGame(3);
+        cout << "\nGame over! Winner: " << gameResult.winnerName << endl;
+
+        cout << "\nDo you want to play again? (Y/N): ";
+        cin >> playAgain;
+    } while (playAgain == 'Y' || playAgain == 'y');
 
 }
 
