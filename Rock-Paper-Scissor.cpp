@@ -4,8 +4,8 @@
 
 using namespace std;
 
-enum enGameChoice {Rock = 1, Paper = 2, Scissor = 3};
-enum enWinner {Player = 1, Computer = 2, Draw = 3 };
+enum enGameChoice { Rock = 1, Paper = 2, Scissor = 3 };
+enum enWinner { Player = 1, Computer = 2, Draw = 3 };
 
 struct stRoundInfo {
     short roundNumber = 0;
@@ -150,19 +150,19 @@ string tabs(short numberOfTabs) {
 }
 
 void showGameOverScreen() {
-    cout << tabs(2) << "---------------------------------------------------------------\n\n";
+    cout << tabs(2) << "------------------------------------------------\n\n";
     cout << tabs(2) << "                +++ G a m e  O v e r +++\n";
-    cout << tabs(2) << "---------------------------------------------------------------\n\n";
+    cout << tabs(2) << "------------------------------------------------\n\n";
 }
 
 void showFinalGameResults(stGameResults gameResult) {
-    cout << tabs(2) << "------------------ [Game Results] ------------\n\n";
+    cout << tabs(2) << "------------------ [Game Results] --------------\n\n";
     cout << tabs(2) << "Game Rounds        : " << gameResult.gameRound << endl;
     cout << tabs(2) << "Player 1 won times : " << gameResult.player1WinTimes << endl;
     cout << tabs(2) << "Computer won times : " << gameResult.computerWinTimes << endl;
     cout << tabs(2) << "Draw times         : " << gameResult.drawTimes << endl;
     cout << tabs(2) << "Final winner       : " << gameResult.winnerName << endl;
-    cout << tabs(2) << "----------------------------------------------\n\n";
+    cout << tabs(2) << "------------------------------------------------\n\n";
 
     setWinnerScreenColor(gameResult.gameWinner);
 }
@@ -199,8 +199,7 @@ void startGame() {
 }
 
 int main() {
-    srand((unsigned)time(NULL)); 
-    startGame(); 
-    return 0;  
+    srand((unsigned)time(NULL));
+    startGame();
+    return 0;
 }
-
